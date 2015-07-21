@@ -4,7 +4,7 @@ var socket = require("socket.io");
 
 app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/views/js"));
-app.use(express.static(__dirname + "/angular-socket-io"));
+app.use(express.static(__dirname + "/views/angular-socket-io"));
 
 var server = app.listen(1337);
 var io = socket.listen(server);
