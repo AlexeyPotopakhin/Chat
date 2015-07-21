@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="chat">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- 3rd party libs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+    <script src="angular-socket-io/socket.js"></script>
+    <!-- App -->
+    <script src="js/chat.module.js"></script>
+    <script src="js/chatController.js"></script>
+    <script src="js/messageController.js"></script>
+    <script src="js/socketFactory.js"></script>
+</head>
+<body>
+    <div ng-controller="ChatController as chatCtrl">
+        <ul>
+            <li ng-repeat="message in chatCtrl.messages">
+                {{message.name}}: {{message.text}}
+            </li>
+        </ul>
+        <form name="chatForm" ng-controller="MessageController as messageCtrl"
+              ng-submit="chatForm.$valid && messageCtrl.sendMessage()" novalidate>
+            <label>Input name: <input type="text" ng-model="messageCtrl.message.name" required></label>
+            <label><textarea style="margin-top: 5px" name="message" cols="33" rows="3"
+                             ng-model="messageCtrl.message.text" required></textarea></label>
+            <input type="submit" value="Send message">
+        </form>
+    </div>
+</body>
+</html>
